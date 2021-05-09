@@ -6,6 +6,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/almacen.db'
 db = SQLAlchemy(app)
 
+#Creacion de las tablas de la base de datos 
 class Rol(db.Model):
     __tablename__ = "ROL"
     id = db.Column(db.Integer,primary_key = True)
@@ -41,18 +42,19 @@ class Producto(db.Model):
 
 
 
-
+#Ejecuta la cracion de datos en la base de datos 
 db.create_all()
 db.session.commit()
 
-
+#Redireccion Pagina de inicio
 @app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route("/login",methods=['Post'])
-def login():
 
+@app.route("/login",methods=['Post'])
+#Funcion para logearte
+def login():
     try:
         usuario = request.form["loginUsuario"]
         passw = request.form["loginPassword"]
