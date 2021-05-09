@@ -46,7 +46,7 @@ class Producto(db.Model):
 db.create_all()
 db.session.commit()
 
-#Redireccion Pagina de inicio
+
 @app.route("/")
 def home():
     return render_template("index.html")
