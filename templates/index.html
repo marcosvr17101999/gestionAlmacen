@@ -9,13 +9,24 @@
         <h1>Hola mundo bienvenido a la pagina de login</h1>
     </div>
     <div>
-        <form action="/login" method="post">
+        <form action="/loginCliente" method="post">
+            <h3>CLIENTE</h3>
+            <div class="form-group row align-items-center">
+                <input type="text" name="loginUsuario" placeholder="USUARIO" class="form-control col-12" autofocus>
+                <input type="text" name="loginPassword" placeholder="CONTRASENIA" class="form-control col-12">
+            </div>
+            <button type="submit" class="btn btn-light btn-block">
+                INICIAR SESION
+            </button>
+        </form>
+        <form action="/loginProveedor" method="post">
+            <h3>PROVEEDOR</h3>
             <div class="form-group row align-items-center">
                 <input type="text" name="loginUsuario" placeholder="USUARIO" class="form-control col-12" autofocus>
                 <input type="text" name="loginPassword" placeholder="CONTRASENIA" class="form-control col-12" autofocus>
             </div>
             <button type="submit" class="btn btn-light btn-block">
-                GUARDAR
+                INICIAR SESION
             </button>
         </form>
     </div>

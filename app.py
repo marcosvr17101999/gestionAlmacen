@@ -38,7 +38,7 @@ class Producto(db.Model):
     precio = db.Column(db.Integer)
     lugar = db.Column(db.String(200))
     proveedor = db.Column(db.Integer,db.ForeignKey("PROVEEDOR.id"))
-
+    cantidadmax = db.Column(db.Integer)
 
 
 
@@ -51,23 +51,38 @@ db.session.commit()
 def home():
     return render_template("index.html")
 
-
-@app.route("/login",methods=['Post'])
+@app.route("/loginCliente",methods=['Post'])
 #Funcion para logearte
-def login():
+def loginCliente():
     try:
         usuario = request.form["loginUsuario"]
         passw = request.form["loginPassword"]
-        print(usuario,passw)
         cliente = db.session.query(Usuario).filter_by(user=usuario).first()
-        print(cliente.rol)
-        if cliente.rol == 1:
-           return render_template("admin.html",usu = cliente)
-        if cliente.rol == 2:
-           return render_template("cliente.html",usu = cliente)
-        if cliente.rol == 3:
-           return render_template("proveedor.html",usu = cliente)
 
+        if (cliente.rol == 1 or cliente.rol == 2) and cliente.password == passw:
+            todosProductos = Producto.query.all()
+            return render_template("cliente.html", productos=todosProductos, usu=cliente)
+        else:
+            return redirect(url_for('home'))
+
+    except AttributeError as e:
+        print("error en los datos")
+        return redirect(url_for('home'))
+    except Exception as e:
+        print(type(e))
+        return redirect(url_for('home'))
+
+@app.route("/loginProveedor",methods=['Post'])
+#Funcion para logearte
+def loginProveedor():
+    try:
+        usuario = request.form["loginUsuario"]
+        passw = request.form["loginPassword"]
+        cliente = db.session.query(Usuario).filter_by(user=usuario).first()
+        if (cliente.rol == 3 or cliente.rol == 1) and cliente.password == passw:
+           return render_template("proveedor.html",usu=cliente)
+        else:
+            return redirect(url_for('home'))
     except AttributeError as e:
         print("error en los datos")
         return redirect(url_for('home'))
