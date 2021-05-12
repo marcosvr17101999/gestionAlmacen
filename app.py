@@ -26,7 +26,6 @@ class Proveedor(db.Model):
     nombre = db.Column(db.String(200))
     tlfn = db.Column(db.String(30))
     cif = db.Column(db.String(30))
-    facturacion = db.Column(db.Integer)
 
 class Producto(db.Model):
     __tablename__ = "PRODUCTO"
@@ -39,6 +38,24 @@ class Producto(db.Model):
     lugar = db.Column(db.String(200))
     proveedor = db.Column(db.Integer,db.ForeignKey("PROVEEDOR.id"))
     cantidadmax = db.Column(db.Integer)
+
+class CompraCliente(db.Model):
+    __tablename__ = "COMPRACLIENTE"
+    id = db.Column(db.Integer,primary_key = True)
+    idProducto = db.Column(db.Integer,db.ForeignKey("PRODUCTO.id"))
+    idCliente = db.Column(db.Integer,db.ForeignKey("USUARIO.id"))
+    cantidad = db.Column(db.Integer)
+    precio = db.Column(db.Integer)
+    fecha = db.Column(db.Date)
+
+class CompraProveedor(db.Model):
+    __tablename__ = "COMPRAPROVEEDOR"
+    id = db.Column(db.Integer,primary_key = True)
+    idProducto = db.Column(db.Integer,db.ForeignKey("PRODUCTO.id"))
+    idProveedor = db.Column(db.Integer,db.ForeignKey("PROVEEDOR.id"))
+    cantidad = db.Column(db.Integer)
+    precio = db.Column(db.Integer)
+    fecha = db.Column(db.Date)
 
 
 
@@ -63,8 +80,11 @@ def login():
             todosProductos = Producto.query.all()
             return render_template("admin.html", productos=todosProductos, usu=cliente)
         elif(cliente.rol == 2) and cliente.password == passw:
+            id = int(cliente.id)
+            compras = db.session.query(CompraCliente).filter_by(idCliente=id).order_by(CompraCliente.precio.desc()).all()
+            print(compras)
             todosProductos = Producto.query.all()
-            return render_template("cliente.html", productos=todosProductos, usu=cliente)
+            return render_template("cliente.html", productos=todosProductos, usu=cliente,listacompras=compras)
         elif(cliente.rol == 3) and cliente.password == passw:
             todosProductos = Producto.query.all()
             return render_template("proveedor.html", productos=todosProductos, usu=cliente)
@@ -75,7 +95,7 @@ def login():
         print("error en los datos")
         return redirect(url_for('home'))
     except Exception as e:
-        print(type(e))
+        print(e)
         return redirect(url_for('home'))
 
 

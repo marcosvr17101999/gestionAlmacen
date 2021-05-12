@@ -23,8 +23,8 @@
         </div>
         <div class="col-6 row">
             <h3>LISTA DE PRODUCTOS</h3>
-            <h5 class="stock">Productos que hay que pedir</h5>
-            <h5 class="stock2">Productos que hay en stock</h5>
+            <!-- <h5 class="stock">Productos que hay que pedir</h5>
+            <h5 class="stock2">Productos que hay en stock</h5> -->
 
             <div class="card-body col-12">
                 <table class="table">
@@ -34,43 +34,33 @@
                             <th>Producto</th>
                             <th>Color</th>
                             <th>Cantidad</th>
-                            <th>CantidadMax</th>
                             <th>Descripcion</th>
                             <th>Precio</th>
-                            <th>Lugar</th>
                             <th>Proveedor</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         {% for producto in productos %}
                         <tr>
-                            <th
-                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
-                                {{producto.id}}</th>
+                            <th class="stock">
+                               <strong>{{producto.id}}</strong></th>
                             <td
-                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
+                                class="stock">
                                 {{producto.producto}}</td>
                             <td
-                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
+                                class="stock">
                                 {{producto.color}}</td>
                             <td
-                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
+                                class="stock">
                                 {{producto.cantidad}}</td>
                             <td
-                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
-                                {{producto.cantidadmax}}</td>
-                            <td
-                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
+                                class="stock">
                                 {{producto.descripcion}}</td>
                             <td
-                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
+                                class="stock">
                                 {{producto.precio}}</td>
                             <td
-                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
-                                {{producto.lugar}}</td>
-                            <td
-                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
+                                class="stock">
                                 {{producto.proveedor}}</td>
 
                         </tr>
@@ -81,7 +71,10 @@
         </div>
         <div class="col-6 ">
             <h3>ESTADISTICAS</h3>
-            
+            {% for producto in listacompras %}
+            <h1>""""""""""""""""""""""""""""""""""""</h1>
+            <h6>{{producto.id}}</h6><h6>{{producto.idCliente}}</h6><h6>{{producto.precio}}</h6>
+            {% endfor %}
         </div>
     </div>
 

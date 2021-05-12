@@ -11,4 +11,23 @@ Requerimientos:
     Proveedor vera todos los productos suyos y una grafica de cuantos productos se han vendido a la empresa
     Admin vera todos los clientes,proveedores y productos donde avise el stock que haya
     
-    Anadir paginas cuando todo este de ver detalles del producto y detalles de clientes
+    Aniadir paginas cuando todas las funcionalidades esten de ver detalles del producto y detalles de clientes
+
+
+
+    (COSAS QUE TENGO QUE MODIFICAR EN LA BASE DE DATOS)
+    ANIADIR TABLA DE COMPRAS DE CLIENTES Y COMPRAS DE PRODUCTOS
+    TABLAS ACTUALES:
+        ROL-->id,rol 
+        USUARIO-->id,user,password,rol 
+        Proveedor-->id,id_usario,nombre,tlfn,cif
+        Producto-->id,producto,color,cantidad,descripcion,precio,lugar,proveedor,cantidadmax
+        comprasClientes-->id,idproducto,idcliente,cantidad,precio,fecha
+        comprasProveedor-->id,idproducto,idproveedor,cantidad,precio,fecha
+
+
+
+CODIGO QUE USARE 
+  <th
+                                class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} stock2 {% endif %}">
+                                {{producto.id}}</th>

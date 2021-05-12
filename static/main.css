@@ -1,8 +1,11 @@
-.stock{
+.stock1{
     color: #008000;
 }
 .stock2{
     color: #ffa500;
+}
+.stock{
+    color:white;
 }
 .rwe{
     background:linear-gradient(left black blue) ;
