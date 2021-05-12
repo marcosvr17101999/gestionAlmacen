@@ -51,17 +51,23 @@ db.session.commit()
 def home():
     return render_template("index.html")
 
-@app.route("/loginCliente",methods=['Post'])
+@app.route("/login",methods=['Post'])
 #Funcion para logearte
-def loginCliente():
+def login():
     try:
         usuario = request.form["loginUsuario"]
         passw = request.form["loginPassword"]
         cliente = db.session.query(Usuario).filter_by(user=usuario).first()
 
-        if (cliente.rol == 1 or cliente.rol == 2) and cliente.password == passw:
+        if (cliente.rol == 1 ) and cliente.password == passw:
+            todosProductos = Producto.query.all()
+            return render_template("admin.html", productos=todosProductos, usu=cliente)
+        elif(cliente.rol == 2) and cliente.password == passw:
             todosProductos = Producto.query.all()
             return render_template("cliente.html", productos=todosProductos, usu=cliente)
+        elif(cliente.rol == 3) and cliente.password == passw:
+            todosProductos = Producto.query.all()
+            return render_template("proveedor.html", productos=todosProductos, usu=cliente)
         else:
             return redirect(url_for('home'))
 
@@ -72,23 +78,7 @@ def loginCliente():
         print(type(e))
         return redirect(url_for('home'))
 
-@app.route("/loginProveedor",methods=['Post'])
-#Funcion para logearte
-def loginProveedor():
-    try:
-        usuario = request.form["loginUsuario"]
-        passw = request.form["loginPassword"]
-        cliente = db.session.query(Usuario).filter_by(user=usuario).first()
-        if (cliente.rol == 3 or cliente.rol == 1) and cliente.password == passw:
-           return render_template("proveedor.html",usu=cliente)
-        else:
-            return redirect(url_for('home'))
-    except AttributeError as e:
-        print("error en los datos")
-        return redirect(url_for('home'))
-    except Exception as e:
-        print(type(e))
-        return redirect(url_for('home'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

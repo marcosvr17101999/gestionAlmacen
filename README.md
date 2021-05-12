@@ -5,8 +5,10 @@ La aplicacion consiste en crear una aplicacion web que ayude a una empresa de su
 La aplicacion servira como base de datos y como gestion de datos de la empresa como para los proveedores.
 
 Requerimientos:
-    Inventario de todos los productos y cantidades del almacen, de tal forma que cuando el stock este al 90% nos avise
-    Dos tipos de acceso para los clientes y los proveedores(Tener un usuario Admin)
-    Grafica de ventas, de compras y comparativas.(Sirve con mostrar info de cualquier manera)
-    Tener toda la info de los productos que hay(ver detalles de los productos)
-    Almacenar la info de los proveedores
+    Inventario de todos los productos y cantidades del almacen, de tal forma que cuando el stock este al 90% nos avise(zona ADMIN)
+    Tres tipos de acceso para los clientes, los proveedores y el admin
+    Cliente vera todos los productos y una grafica de gastos datos puestos en la base de datos a mano debido a que no esta implementado la opcion de compras en la app
+    Proveedor vera todos los productos suyos y una grafica de cuantos productos se han vendido a la empresa
+    Admin vera todos los clientes,proveedores y productos donde avise el stock que haya
+    
+    Anadir paginas cuando todo este de ver detalles del producto y detalles de clientes
