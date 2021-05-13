@@ -17,17 +17,20 @@
 </head>
 
 <body>
-    <div class="container-fluid row rwe">
-        <div class="col-12 row justify-content-center">
-            <h4 class="col-2">USUARIO: {{usu.user}}</h4>
+    <div class="container-fluid row  justify-content-center">
+        <div class="col-12 row justify-content-end">
+            <h2 class="col-6 my-4">ZONA DE CLIENTES</h2>
+            
+            <form class="col-2 my-5 text-center" action="/" method="POST">
+                <h3>PERFIL</h3>
+                <h5>USUARIO: {{usu.user}}</h5>
+                <button type="submit" class="btn">EXIT</button>
+            </form>
         </div>
-        <div class="col-6 row">
-            <h3>LISTA DE PRODUCTOS</h3>
-            <!-- <h5 class="stock">Productos que hay que pedir</h5>
-            <h5 class="stock2">Productos que hay en stock</h5> -->
-
-            <div class="card-body col-12">
-                <table class="table">
+        <div class="col-5 row">
+            <h3>LISTA DE PRODUCTOS DISPONIBLES</h3>
+            <div class="card-body col-10">
+                <table class="table table-striped ">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -43,24 +46,19 @@
                         {% for producto in productos %}
                         <tr>
                             <th class="stock">
-                               <strong>{{producto.id}}</strong></th>
-                            <td
-                                class="stock">
+                                <strong>{{producto.id}}</strong>
+                            </th>
+                            <td class="stock">
                                 {{producto.producto}}</td>
-                            <td
-                                class="stock">
+                            <td class="stock">
                                 {{producto.color}}</td>
-                            <td
-                                class="stock">
+                            <td class="stock">
                                 {{producto.cantidad}}</td>
-                            <td
-                                class="stock">
+                            <td class="stock">
                                 {{producto.descripcion}}</td>
-                            <td
-                                class="stock">
+                            <td class="stock">
                                 {{producto.precio}}</td>
-                            <td
-                                class="stock">
+                            <td class="stock">
                                 {{producto.proveedor}}</td>
 
                         </tr>
@@ -69,10 +67,10 @@
                 </table>
             </div>
         </div>
-        <div class="col-6 ">
-            <h3>ESTADISTICAS TOTAL {{precio}}</h3>
-            <div class="card-body col-12">
-                <table class="table">
+        <div class="col-5 row ">
+            <h3>HISTORIAL DE COMPRAS TOTAL </h3>
+            <div class="card-body col-8">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Pedido</th>
@@ -86,26 +84,27 @@
                         {% for producto in listacompras %}
                         <tr>
                             <th class="stock">
-                               <strong>{{producto.id}}</strong></th>
-                            <td
-                                class="stock">
+                                <strong>{{producto.id}}</strong>
+                            </th>
+                            <td class="stock">
                                 {{producto.idProducto}}</td>
-                            <td
-                                class="stock">
+                            <td class="stock">
                                 {{producto.cantidad}}</td>
-                            <td
-                                class="stock">
+                            <td class="stock">
                                 {{producto.precio}}</td>
-                            <td
-                                class="stock">
+                            <td class="stock">
                                 {{producto.fecha}}</td>
-
                         </tr>
                         {% endfor %}
+                        <tr>
+                            <th class="stock" colspan="3">TOTAL</th>
+                            <td class="stock">{{precio}}</td>
+                            <td class="stock">$</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            
+
         </div>
     </div>
 

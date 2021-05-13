@@ -65,9 +65,12 @@ db.create_all()
 db.session.commit()
 
 
-@app.route("/")
+@app.route("/",methods=["Post"])
 def home():
     return render_template("index.html")
+
+def exit():
+    return redirect(url_for('index.html'))
 
 @app.route("/login",methods=['Post'])
 #Funcion para logearte
@@ -82,10 +85,11 @@ def login():
             return render_template("admin.html", productos=todosProductos, usu=cliente)
         elif(cliente.rol == 2) and cliente.password == passw:
             id = int(cliente.id)
-            compras = db.session.query(CompraCliente).filter_by(idCliente=id).order_by(CompraCliente.precio.desc()).all()            
+            compras = db.session.query(CompraCliente).filter_by(idCliente=id).order_by(CompraCliente.fecha.desc()).all()            
             suma = db.session.query(CompraCliente,func.sum(CompraCliente.precio)).filter_by(idCliente=id).all()
             s = suma[0][1]
-            print(s)
+            if(s==None):
+                s=0
             todosProductos = Producto.query.all()
             return render_template("cliente.html", productos=todosProductos, usu=cliente,listacompras=compras,precio=s)
         elif(cliente.rol == 3) and cliente.password == passw:
