@@ -1,5 +1,6 @@
 from flask import Flask, render_template,request,url_for,redirect
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -81,10 +82,12 @@ def login():
             return render_template("admin.html", productos=todosProductos, usu=cliente)
         elif(cliente.rol == 2) and cliente.password == passw:
             id = int(cliente.id)
-            compras = db.session.query(CompraCliente).filter_by(idCliente=id).order_by(CompraCliente.precio.desc()).all()
-            print(compras)
+            compras = db.session.query(CompraCliente).filter_by(idCliente=id).order_by(CompraCliente.precio.desc()).all()            
+            suma = db.session.query(CompraCliente,func.sum(CompraCliente.precio)).filter_by(idCliente=id).all()
+            s = suma[0][1]
+            print(s)
             todosProductos = Producto.query.all()
-            return render_template("cliente.html", productos=todosProductos, usu=cliente,listacompras=compras)
+            return render_template("cliente.html", productos=todosProductos, usu=cliente,listacompras=compras,precio=s)
         elif(cliente.rol == 3) and cliente.password == passw:
             todosProductos = Producto.query.all()
             return render_template("proveedor.html", productos=todosProductos, usu=cliente)

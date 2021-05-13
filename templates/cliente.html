@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container-fluid row ">
+    <div class="container-fluid row rwe">
         <div class="col-12 row justify-content-center">
             <h4 class="col-2">USUARIO: {{usu.user}}</h4>
         </div>
@@ -70,11 +70,42 @@
             </div>
         </div>
         <div class="col-6 ">
-            <h3>ESTADISTICAS</h3>
-            {% for producto in listacompras %}
-            <h1>""""""""""""""""""""""""""""""""""""</h1>
-            <h6>{{producto.id}}</h6><h6>{{producto.idCliente}}</h6><h6>{{producto.precio}}</h6>
-            {% endfor %}
+            <h3>ESTADISTICAS TOTAL {{precio}}</h3>
+            <div class="card-body col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Pedido</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in listacompras %}
+                        <tr>
+                            <th class="stock">
+                               <strong>{{producto.id}}</strong></th>
+                            <td
+                                class="stock">
+                                {{producto.idProducto}}</td>
+                            <td
+                                class="stock">
+                                {{producto.cantidad}}</td>
+                            <td
+                                class="stock">
+                                {{producto.precio}}</td>
+                            <td
+                                class="stock">
+                                {{producto.fecha}}</td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
         </div>
     </div>
 
