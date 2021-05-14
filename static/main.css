@@ -1,9 +1,21 @@
-.stock1{
-    color: #008000;
+
+.oro{
+    color: #ffd700;
+    font-family: 'Anton', sans-serif;
 }
-.stock2{
-    color: #ffa500;
+.white{
+    color:white;
+    font-family: 'Anton', sans-serif;
 }
 .stock{
-    color:white;
+    color: rgb(241, 82, 82);
+    font-family: 'Anton', sans-serif;
+}
+body{
+    background: url(/static/wallpaper-mania.com_High_resolution_wallpaper_background_ID_77700015043.jpg) no-repeat center center fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -moz-background-size:cover;
+    background-size: cover;
+    background-repeat: no-repeat;
 }

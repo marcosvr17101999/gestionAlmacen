@@ -12,52 +12,54 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"
         integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Goblin+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <div class="container-fluid row  justify-content-center">
         <div class="col-12 row justify-content-end">
-            <h2 class="col-6 my-4">ZONA DE PROVEEDORES</h2>
+            <h2 class="col-6 my-4 oro port">ZONA DE PROVEEDORES</h2>
 
-            <form class="col-2 my-5 text-center border border-1 border-warning" action="/exit" method="POST">
-                <h3>PERFIL</h3>
-                <h5>USUARIO: {{provee.nombre}}</h5>
-                <h5>TLFN: {{provee.tlfn}}</h5>
-                <h5>CIF: {{provee.cif}}</h5>
+            <form class="col-2 my-5 text-center border border-1 border-warning row" action="/exit" method="POST">
+                <h3 class="col-12 oro">PERFIL</h3>
+                <h5 class="col-6 oro">USUARIO: </h5><h5 class="white col-6 ">{{provee.nombre}}</h5>
+                <h5 class="col-6 oro">TLFN:</h5><h5 class="white col-6 ">{{provee.tlfn}}</h5>
+                <h5 class="col-6 oro">CIF:</h5><h5 class="white col-6 ">{{provee.cif}}</h5>
 
-                <button type="submit" class="btn">EXIT</button>
+                <button type="submit" class="btn col-12">EXIT</button>
             </form>
         </div>
         <div class="col-6 row">
-            <h4>LISTA DE TUS PRODUCTOS DISPONIBLES</h4>
+            <h4 class="oro">LISTA DE TUS PRODUCTOS DISPONIBLES</h4>
             <div class="card-body col-10">
                 <table class="table table-striped ">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Producto</th>
-                            <th>Color</th>
-                            <th>Cantidad</th>
-                            <th>Descripcion</th>
-                            <th>Precio</th>
+                            <th class="white"><h5>ID</h5></th>
+                            <th class="white"><h5>Producto</h5></th>
+                            <th class="white"><h5>Color</h5></th>
+                            <th class="white"><h5>Cantidad</h5></th>
+                            <th class="white"><h5>Descripcion</h5></th>
+                            <th class="white"><h5>Precio</h5></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for producto in productos %}
                         <tr>
-                            <th class="stock">
+                            <th class="white">
                                 <strong>{{producto.id}}</strong>
                             </th>
-                            <td class="stock">
+                            <td class="white">
                                 {{producto.producto}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{producto.color}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{producto.cantidad}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{producto.descripcion}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{producto.precio}}</td>
                         </tr>
                         {% endfor %}
@@ -67,39 +69,39 @@
         </div>
 
         <div class="col-6 row ">
-            <h4>HISTORIAL DE COMPRAS TOTAL </h4>
+            <h4 class="oro">HISTORIAL DE COMPRAS TOTAL </h4>
             <div class="card-body col-8">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Pedido</th>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Fecha</th>
+                            <th class="white"><h5>Pedido</h5></th>
+                            <th class="white"><h5>Producto</h5></th>
+                            <th class="white"><h5>Cantidad</h5></th>
+                            <th class="white"><h5>Precio</h5></th>
+                            <th class="white"><h5>Fecha</h5></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for producto in listacompras %}
                         <tr>
-                            <th class="stock">
+                            <th class="white">
                                 <strong>{{producto.id}}</strong>
                             </th>
-                            <td class="stock">
+                            <td class="white">
                                 {{producto.idProducto}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{producto.cantidad}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{producto.precio}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{producto.fecha}}</td>
                         </tr>
                         {% endfor %}
                         <tr>
-                            <th class="stock" colspan="2">TOTAL</th>
-                            <td class="stock">{{cantidad}}</td>
-                            <td class="stock">{{precio}}</td>
-                            <td class="stock">$</td>
+                            <th class="white" colspan="2"><h5>TOTAL</h5></th>
+                            <td class="white"><h5>{{cantidad}}</h5></td>
+                            <td class="white"><h5>{{precio}}</h5></td>
+                            <td class="white"><h5>€</h5></td>
                         </tr>
                     </tbody>
                 </table>

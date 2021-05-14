@@ -12,6 +12,8 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"
         integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Goblin+One&display=swap" rel="stylesheet">
 
 
 </head>
@@ -19,46 +21,51 @@
 <body>
     <div class="container-fluid row  justify-content-center">
         <div class="col-12 row justify-content-end">
-            <h2 class="col-6 my-4">ZONA DE ADMIN</h2>
+            <h2 class="col-6 my-4 oro port">ZONA DE ADMIN</h2>
 
-            <form class="col-2 my-5 text-center border border-1 border-warning" action="/exit" method="POST">
-                <h3>PERFIL</h3>
-                <h5>USUARIO: {{usu.user}}</h5>
-                <button type="submit" class="btn">EXIT</button>
+            <form class="col-2 my-5 text-center border border-1 border-warning row" action="/exit" method="POST">
+                <h3 class="col-12 oro">PERFIL</h3>
+                <h5 class="col-6 oro ">USUARIO: </h5><h5 class="white col-6 ">{{usu.user}}</h5>
+
+                <button type="submit" class="btn col-12"><h5 class="oro ">EXIT</h5> </button>
             </form>
         </div>
-        <div class="col-6 row">
-            <h3>LISTA DE PRODUCTOS DISPONIBLES</h3>
+        <div class="col-12 row">
+            <h3 class="oro">LISTA DE PRODUCTOS DISPONIBLES</h3>
             <div class="card-body col-10">
+                <h4 class="stock">Productos con stock inferior al 90%</h4>
                 <table class="table table-striped ">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Producto</th>
-                            <th>Color</th>
-                            <th>Cantidad</th>
-                            <th>Descripcion</th>
-                            <th>Precio</th>
-                            <th>Proveedor</th>
+                            <th class="white"><h5>ID</h5></th>
+                            <th class="white"><h5>Producto</h5></th>
+                            <th class="white"><h5>Color</h5></th>
+                            <th class="white"><h5>Cantidad</h5></th>
+                            <th class="white"><h5>Cantidad Max</h5></th>
+                            <th class="white"><h5>Descripcion</h5></th>
+                            <th class="white"><h5>Precio</h5></th>
+                            <th class="white"><h5>Proveedor</h5></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for producto in productos %}
                         <tr>
-                            <th class="stock">
+                            <th class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} white {% endif %}">
                                 <strong>{{producto.id}}</strong>
                             </th>
-                            <td class="stock">
+                            <td class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} white {% endif %}">
                                 {{producto.producto}}</td>
-                            <td class="stock">
+                            <td class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} white {% endif %}">
                                 {{producto.color}}</td>
-                            <td class="stock">
+                            <td class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} white {% endif %}">
                                 {{producto.cantidad}}</td>
-                            <td class="stock">
+                            <td class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} white {% endif %}">
+                                {{producto.cantidadmax}}</td>
+                            <td class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} white {% endif %}">
                                 {{producto.descripcion}}</td>
-                            <td class="stock">
+                            <td class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} white {% endif %}">
                                 {{producto.precio}}</td>
-                            <td class="stock">
+                            <td class="{% if (producto.cantidad/producto.cantidadmax < 0.90) %} stock {% else %} white {% endif %}">
                                 {{producto.proveedor}}</td>
 
                         </tr>
@@ -68,25 +75,25 @@
             </div>
         </div>
         <div class="col-6 row ">
-            <h3>USUARIOS </h3>
+            <h3 class="oro">USUARIOS </h3>
             <div class="card-body col-8">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>USUARIO</th>
-                            <th>ROL</th>
+                            <th class="white"><h5>IDUSUARIO</h5></th>
+                            <th class="white"><h5>USUARIO</h5></th>
+                            <th class="white"><h5>ROL</h5></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for user in listUsuarios %}
                         <tr>
-                            <th class="stock">
+                            <th class="white">
                                 <strong>{{user.id}}</strong>
                             </th>
-                            <td class="stock">
+                            <td class="white">
                                 {{user.user}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{user.rol}}</td>
 
                         </tr>
@@ -98,32 +105,32 @@
 
         </div>
         <div class="col-6 row ">
-            <h3>PROVEEDORES </h3>
+            <h3 class="oro">PROVEEDORES </h3>
             <div class="card-body col-8">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>IDUSUARIO</th>
-                            <th>NOMBRE</th>
-                            <th>TLFN</th>
-                            <th>CIF</th>
+                            <th class="white"><h5>IDPROVEEDOR</h5></th>
+                            <th class="white"><h5>IDUSUARIO</h5></th>
+                            <th class="white"><h5>NOMBRE</h5></th>
+                            <th class="white"><h5>TLFN</h5></th>
+                            <th class="white"><h5>CIF</h5></th>
 
                         </tr>
                     </thead>
                     <tbody>
                         {% for prove in listProveedores %}
                         <tr>
-                            <th class="stock">
+                            <th class="white">
                                 <strong>{{prove.id}}</strong>
                             </th>
-                            <td class="stock">
+                            <td class="white">
                                 {{prove.id_usuario}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{prove.nombre}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{prove.tlfn}}</td>
-                            <td class="stock">
+                            <td class="white">
                                 {{prove.cif}}</td>
                         </tr>
                         {% endfor %}
