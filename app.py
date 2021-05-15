@@ -23,7 +23,7 @@ class Usuario(db.Model):
 class Proveedor(db.Model):
     __tablename__ = "PROVEEDOR"
     id = db.Column(db.Integer,primary_key = True)
-    id_usuario = db.Column(db.Integer,db.ForeignKey("USUARIO.id"))
+    idUsuario = db.Column(db.Integer,db.ForeignKey("USUARIO.id"))
     nombre = db.Column(db.String(200))
     tlfn = db.Column(db.String(30))
     cif = db.Column(db.String(30))
@@ -38,7 +38,7 @@ class Producto(db.Model):
     precio = db.Column(db.Integer)
     lugar = db.Column(db.String(200))
     proveedor = db.Column(db.Integer,db.ForeignKey("PROVEEDOR.id"))
-    cantidadmax = db.Column(db.Integer)
+    cantidadMax = db.Column(db.Integer)
 
 class CompraCliente(db.Model):
     __tablename__ = "COMPRACLIENTE"
@@ -72,6 +72,12 @@ def home():
 def exit():
     return render_template('index.html')
 
+@app.route("/verProducto/<id>",methods=["Post"])
+def verProducto():
+    pro = db.session.query(Producto).filter_by(id=id).first()
+    return render_template("verProducto.html",produ=pro)
+
+
 @app.route("/login",methods=['Post'])
 #Funcion para logearte
 def login():
@@ -83,29 +89,29 @@ def login():
             todosProductos = Producto.query.all()
             usuarios = Usuario.query.all()
             proveedores = Proveedor.query.all()
-            return render_template("admin.html",listProveedores=proveedores,listUsuarios=usuarios, productos=todosProductos, usu=cliente)
+            return render_template("admin.html",listProveedores=proveedores,listUsuarios=usuarios, productos=todosProductos, usuario=cliente)
         elif(cliente.rol == 2) and cliente.password == passw:
             id = int(cliente.id)
             compras = db.session.query(CompraCliente).filter_by(idCliente=id).order_by(CompraCliente.fecha.desc()).all()            
             suma = db.session.query(CompraCliente,func.sum(CompraCliente.precio)).filter_by(idCliente=id).all()
-            s = suma[0][1]
-            if(s==None):
-                s=0
+            precioTotal = suma[0][1]
+            if(precioTotal==None):
+                precioTotal=0
             todosProductos = Producto.query.all()
-            return render_template("cliente.html", productos=todosProductos, usu=cliente,listacompras=compras,precio=s)
+            return render_template("cliente.html", productos=todosProductos, usuario=cliente,listacompras=compras,precio=precioTotal)
         elif(cliente.rol == 3) and cliente.password == passw:
-            prove = db.session.query(Proveedor).filter_by(id_usuario=cliente.id).first()
+            prove = db.session.query(Proveedor).filter_by(idUsuario=cliente.id).first()
             compras = db.session.query(CompraProveedor).filter_by(idProveedor=prove.id).order_by(CompraProveedor.fecha.desc()).all()            
             suma = db.session.query(CompraProveedor,func.sum(CompraProveedor.precio)).filter_by(idProveedor=prove.id).all()
             cant = db.session.query(CompraProveedor,func.sum(CompraProveedor.cantidad)).filter_by(idProveedor=prove.id).all()
-            s2 = cant[0][1]
-            s = suma[0][1]
-            if(s==None):
-                s=0
-            if(s2==None):
-                s2=0
+            cantidad = cant[0][1]
+            precioTotal = suma[0][1]
+            if(precioTotal == None):
+                precioTotal = 0
+            if(cantidad == None):
+                cantidad = 0
             todosProductos = db.session.query(Producto).filter_by(proveedor=prove.id)
-            return render_template("proveedor.html", productos=todosProductos, usu=cliente,provee=prove,listacompras=compras,precio=s,cantidad=s2)
+            return render_template("proveedor.html", productos=todosProductos, usuario=cliente,provee=prove,listacompras=compras,precio=precioTotal,cantidad=cantidad)
         else:
             return redirect(url_for('home'))
 
