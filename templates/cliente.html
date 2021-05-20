@@ -75,7 +75,6 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="white"><h5>Pedido</h5></th>
                             <th class="white"><h5>Producto</h5></th>
                             <th class="white"><h5>Cantidad</h5></th>
                             <th class="white"><h5>Precio</h5></th>
@@ -85,9 +84,6 @@
                     <tbody>
                         {% for producto in listacompras %}
                         <tr>
-                            <th class="white">
-                                <h6>{{producto.id}}</h6>
-                            </th>
                             <td class="white">
                                 {{producto.idProducto}}</td>
                             <td class="white">
@@ -99,9 +95,9 @@
                         </tr>
                         {% endfor %}
                         <tr>
-                            <th class="white" colspan="3">TOTAL</th>
+                            <th class="white" colspan="2">TOTAL</th>
                             <td class="white">{{precio}}</td>
-                            <td class="white"></td>
+                            <td class="white">€</td>
                         </tr>
                     </tbody>
                 </table>

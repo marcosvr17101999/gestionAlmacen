@@ -30,21 +30,18 @@
                 <button type="submit" class="btn col-12"><h5 class="oro ">EXIT</h5> </button>
             </form>
         </div>
-        <div class="col-12 row">
+        <div class="col-5 row">
             <h3 class="oro">LISTA DE PRODUCTOS DISPONIBLES</h3>
-            <div class="card-body col-10">
+            <div class="card-body col-8">
                 <h4 class="stock">Productos con stock inferior al 90%</h4>
                 <table class="table table-striped ">
                     <thead>
                         <tr>
                             <th class="white"><h5>ID</h5></th>
                             <th class="white"><h5>Producto</h5></th>
-                            <th class="white"><h5>Color</h5></th>
                             <th class="white"><h5>Cantidad</h5></th>
-                            <th class="white"><h5>Cantidad Max</h5></th>
-                            <th class="white"><h5>Descripcion</h5></th>
                             <th class="white"><h5>Precio</h5></th>
-                            <th class="white"><h5>Proveedor</h5></th>
+                            <th class="white"><h5>Ver Detalles</h5></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,26 +53,21 @@
                             <td class="{% if (producto.cantidad/producto.cantidadMax < 0.90) %} stock {% else %} white {% endif %}">
                                 {{producto.producto}}</td>
                             <td class="{% if (producto.cantidad/producto.cantidadMax < 0.90) %} stock {% else %} white {% endif %}">
-                                {{producto.color}}</td>
-                            <td class="{% if (producto.cantidad/producto.cantidadMax < 0.90) %} stock {% else %} white {% endif %}">
                                 {{producto.cantidad}}</td>
                             <td class="{% if (producto.cantidad/producto.cantidadMax < 0.90) %} stock {% else %} white {% endif %}">
-                                {{producto.cantidadMax}}</td>
-                            <td class="{% if (producto.cantidad/producto.cantidadMax < 0.90) %} stock {% else %} white {% endif %}">
-                                {{producto.descripcion}}</td>
-                            <td class="{% if (producto.cantidad/producto.cantidadMax < 0.90) %} stock {% else %} white {% endif %}">
                                 {{producto.precio}}</td>
-                            <td class="{% if (producto.cantidad/producto.cantidadMax < 0.90) %} stock {% else %} white {% endif %}">
-                                {{producto.proveedor}}</td>
-
+                            <td><a href="/verProducto/{{producto.id}}/{{usuario.id}}" style="text-decoration:none" class="{% if (producto.cantidad/producto.cantidadMax < 0.90) %} stock {% else %} white {% endif %}">
+                                VER DETALLES
+                                </a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-6 row ">
-            <h3 class="oro">USUARIOS </h3>
+        <div class="col-3 row ">
+            <h3 class="oro">USUARIOS</h3>
             <div class="card-body col-8">
                 <table class="table table-striped">
                     <thead>
@@ -104,9 +96,9 @@
             </div>
 
         </div>
-        <div class="col-6 row ">
-            <h3 class="oro">PROVEEDORES </h3>
-            <div class="card-body col-8">
+        <div class="col-4 row">
+            <h3 class="oro mb-0 pb-0">PROVEEDORES </h3>
+            <div class="card-body col-8 pt-0">
                 <table class="table table-striped">
                     <thead>
                         <tr>

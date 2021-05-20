@@ -72,11 +72,21 @@ def home():
 def exit():
     return render_template('index.html')
 
-@app.route("/verProducto/<id>",methods=["Post"])
-def verProducto():
-    pro = db.session.query(Producto).filter_by(id=id).first()
-    return render_template("verProducto.html",produ=pro)
-
+@app.route("/back/<id>",methods=['Post'])
+def back(id):
+    cliente = db.session.query(Usuario).filter_by(id=id).first()
+    print(cliente)
+    todosProductos = Producto.query.all()
+    usuarios = Usuario.query.all()
+    proveedores = Proveedor.query.all()
+    return render_template("admin.html",listProveedores=proveedores,listUsuarios=usuarios, productos=todosProductos, usuario=cliente)
+    
+@app.route("/verProducto/<id>/<user>")
+def verProducto(id,user):
+    pro = db.session.query(Producto).filter_by(id=int(id)).first()
+    cliente = db.session.query(Usuario).filter_by(id=user).first()
+    print(cliente)
+    return render_template("verProducto.html",produ=pro,usuario=cliente)
 
 @app.route("/login",methods=['Post'])
 #Funcion para logearte

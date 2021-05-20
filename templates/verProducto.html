@@ -21,92 +21,38 @@
     <div class="container-fluid row  justify-content-center">
         <div class="col-12 row justify-content-end">
             <h2 class="col-6 my-4 port oro">Ver Producto</h2>
-            
             <form class="col-2 my-5 text-center border border-1 border-warning row" action="/exit" method="POST">
                 <h3 class="col-12 oro">PERFIL</h3>
                 <h5 class="col-6 oro ">USUARIO: </h5><h5 class="white col-6 ">{{usuario.user}}</h5>
-
                 <button type="submit" class="btn col-12"><h5 class="oro ">EXIT</h5> </button>
             </form>
         </div>
-        <div class="col-6 row">
-            <h3 class="oro">LISTA DE PRODUCTOS DISPONIBLES</h3>
+        <div class="col-6 row justify-content-center">
+            <form class="col-7 my-5 text-left border border-1 border-warning row" action="/back/{{usuario.id}}" method="POST">
+                <h3 class="col-12 oro">PRODUCTO</h3>
+                <h5 class="col-6 oro ">ID: </h5><h5 class="white col-6 ">{{produ.id}}</h5>
+                <h5 class="col-6 oro ">NOMBRE: </h5><h5 class="white col-6 ">{{produ.producto}}</h5>
+                <h5 class="col-6 oro ">COLOR: </h5><h5 class="white col-6 ">{{produ.color}}</h5>
+                <h5 class="col-6 oro ">CANTIDAD: </h5><h5 class="white col-6 ">{{produ.cantidad}}</h5>
+                <h5 class="col-6 oro ">DESCRIPCION: </h5><h5 class="white col-6 ">{{produ.descripcion}}</h5>
+                <h5 class="col-6 oro ">PRECIO: </h5><h5 class="white col-6 ">{{produ.precio}}</h5>
+                <h5 class="col-6 oro ">PROVEEDOR: </h5><h5 class="white col-6 ">{{produ.proveedor}}</h5>
+                <h5 class="col-6 oro ">CANTIDAD MAXIMA: </h5><h5 class="white col-6 ">{{produ.cantidadMax}}</h5>
+
+                <button type="submit" class="btn col-12"><h5 class="oro ">VOLVER</h5> </button>
+            </form>
             <div class="card-body col-10">
-                <table class="table table-striped ">
-                    <thead>
-                        <tr>
-                            <th class="white"><h5>ID</h5></th>
-                            <th class="white"><h5>Producto</h5></th>
-                            <th class="white"><h5>Color</h5></th>
-                            <th class="white"><h5>Cantidad</h5></th>
-                            <th class="white"><h5>Descripcion</h5></th>
-                            <th class="white"><h5>Precio</h5></th>
-                            <th class="white"><h5>Proveedor</h5></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for producto in productos %}
-                        <tr>
-                            <th class="white">
-                                <h6>{{producto.id}}</h6>
-                            </th>
-                            <td class="white">
-                                {{producto.producto}}</td>
-                            <td class="white">
-                                {{producto.color}}</td>
-                            <td class="white">
-                                {{producto.cantidad}}</td>
-                            <td class="white">
-                                {{producto.descripcion}}</td>
-                            <td class="white">
-                                {{producto.precio}}</td>
-                            <td class="white">
-                                {{producto.proveedor}}</td>
+                
+                
+                
+                
+                
+                
+                
+                
+                
 
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
             </div>
-        </div>
-        <div class="col-6 row ">
-            <h3 class="oro">HISTORIAL DE COMPRAS TOTAL </h3>
-            <div class="card-body col-8">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th class="white"><h5>Pedido</h5></th>
-                            <th class="white"><h5>Producto</h5></th>
-                            <th class="white"><h5>Cantidad</h5></th>
-                            <th class="white"><h5>Precio</h5></th>
-                            <th class="white"><h5>Fecha</h5></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for producto in listacompras %}
-                        <tr>
-                            <th class="white">
-                                <h6>{{producto.id}}</h6>
-                            </th>
-                            <td class="white">
-                                {{producto.idProducto}}</td>
-                            <td class="white">
-                                {{producto.cantidad}}</td>
-                            <td class="white">
-                                {{producto.precio}}</td>
-                            <td class="white">
-                                {{producto.fecha}}</td>
-                        </tr>
-                        {% endfor %}
-                        <tr>
-                            <th class="white" colspan="3">TOTAL</th>
-                            <td class="white">{{precio}}</td>
-                            <td class="white"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
         </div>
     </div>
 
