@@ -75,7 +75,7 @@ def exit():
 @app.route("/back/<id>",methods=['Post'])
 def back(id):
     cliente = db.session.query(Usuario).filter_by(id=id).first()
-    print(cliente)
+
     todosProductos = Producto.query.all()
     usuarios = Usuario.query.all()
     proveedores = Proveedor.query.all()
@@ -85,7 +85,7 @@ def back(id):
 def verProducto(id,user):
     pro = db.session.query(Producto).filter_by(id=int(id)).first()
     cliente = db.session.query(Usuario).filter_by(id=user).first()
-    print(cliente)
+
     return render_template("verProducto.html",produ=pro,usuario=cliente)
 
 @app.route("/login",methods=['Post'])

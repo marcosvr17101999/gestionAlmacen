@@ -6,3 +6,8 @@ La aplicacion servira como base de datos y como gestion de datos de la empresa c
 
 Para poder tener la aplicacion en vuestro sistema podeis usar el siguiente comando en el lugar donde querais almacenarlo:
 git clone https://github.com/marcosvr17101999/gestionAlmacen.git
+
+Cuando tengas ya el proyecto en tu zona de trabajo deberas crear un entorno de trabajo con python 3.9
+Al tener ya tu entorno solo faltaria instalar las librerias que se instalaran automaticamente con el siguiente comando:
+pip install -r requirements.txt
+Con esto ya estaria la aplicacion disponible para funcionar correctamente
